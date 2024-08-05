@@ -1,4 +1,4 @@
-import { Footer } from '@/components/layouts/Footer'
+import { Footer } from '@/components/layouts/Footer/Footer'
 import { Header } from '@/components/layouts/Header'
 import { Provider } from '@/components/layouts/Provider'
 import { stolzl } from '@/components/utils/font'

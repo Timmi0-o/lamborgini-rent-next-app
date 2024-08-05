@@ -12,50 +12,56 @@ export const Discount = () => {
 		<div className='relative w-full justify-center'>
 			{/* GLOWS  */}
 			<div
-				className={'absolute left-[-30%] top-[-50%] ' + style.glowing_left}
+				className={'absolute left-[-30%] top-[-20%] ' + style.glowing_left}
 			></div>
 			<div
 				className={`absolute right-[20%] top-[-50%] ` + style.glowing_right}
 			></div>
 			{/* DISCOUNT COUPON & SQUAD PLUS */}
-			<div className='relative w-[1170px] h-[407px] mx-auto mb-[300px]'>
+			<div className='relative w-[88.889vw] lg:w-[60.938vw] h-[102.222vw] lg:h-[21.198vw] mx-auto mb-[22.222vw] lg:mb-[15.625vw]'>
 				{/* DISCOUNT COUPON  */}
-				<div className='relative overflow-clip flex flex-col items-center justify-center mt-[260px] size-full rounded-ss-[129px] rounded-es-[29px]  rounded-e-[29px] bg-[#1E1D1E]'>
+				<div className='relative overflow-clip flex flex-col items-center justify-center mt-[22.222vw] lg:mt-[13.542vw] size-full rounded-ss-[13.611vw] lg:rounded-ss-[6.719vw] rounded-es-[2.778vw] lg:rounded-es-[1.51vw] rounded-e-[2.778vw]  lg:rounded-e-[1.51vw] bg-[#1E1D1E]'>
 					{/* CIRCLE RIGHT  */}
-					<div className='absolute right-0 top-0 w-[264px] h-[352px]'>
+					<div className='absolute right-0 top-0 w-[13.75vw] h-[18.333vw]'>
 						<Image src={'/discount-circle-right.svg'} fill alt='' />
 					</div>
 					{/* CIRCLE LEFT  */}
-					<div className='absolute left-[2%] bottom-[-30%] w-[361px] h-[480px] opacity-35'>
+					<div className='absolute left-[2%] bottom-[-30%] w-[18.802vw] h-[25vw] opacity-35'>
 						<Image src={'/discount-circle-left.svg'} fill alt='' />
 					</div>
 					<div className='relative z-20 flex flex-col items-center'>
-						<h2 className='text-[46px]'>
+						{/* TITLE PC  */}
+						<h2 className='hidden lg:block text-[2.396vw]'>
 							Get a discount of up to <span className='font-bold'>60%</span>
 						</h2>
-						<p className='text-[18px] text-center text-[#868686] mt-[25px] w-[641px]'>
+						{/* TITLE MOBILE  */}
+						<h2 className='block lg:hidden text-[6.667vw]'>
+							Get a discount <br /> of up to{' '}
+							<span className='font-bold'>60%</span>
+						</h2>
+						<p className='text-[3.889vw] lg:text-[0.938vw] text-center text-[#868686] mt-[8.333vw] lg:mt-[1.302vw] w-[77.222vw] lg:w-[33.385vw]'>
 							Get the latest articles and business updates that you need to
 							know, you’ll even get special recommendations weekly.
 						</p>
 					</div>
-					<div className='flex items-center gap-[20px] mt-[64px] z-30'>
-						<div className='w-[425px]'>
+					<div className='flex flex-col lg:flex-row items-center gap-[1.042vw] mt-[3.333vw] z-30'>
+						<div className='w-[77.778vw] lg:w-[22.135vw]'>
 							<Input
 								opacity='0.7'
 								placeholder='Your email'
 								img
 								imgStart
-								heightCustom='h-[68px]'
+								heightCustom='h-[16.667vw] lg:h-[3.542vw]'
 								imgCustom='/email.svg'
 							/>
 						</div>
-						<div className='w-[180px]'>
-							<Button title='Receive' />
+						<div className='w-[77.778vw] lg:w-[9.375vw] mt-[4.167vw] lg:mt-0'>
+							<Button>Receive</Button>
 						</div>
 					</div>
 				</div>
 				{/* SQUAD PLUS  */}
-				<div className='absolute w-[155px] h-[166px] right-[-8%] bottom-[-15%]'>
+				<div className='hidden lg:absolute w-[8.073vw] h-[8.646vw] right-[-8%] bottom-[-15%]'>
 					<Image src={'/plus-squad.svg'} fill alt='plus' />
 				</div>
 			</div>
@@ -67,10 +73,10 @@ export const Discount = () => {
 						...rainingLineLinks,
 						...rainingLineLinks,
 					].map((nav, i) => (
-						<div className='relative mr-[40px]' key={i}>
+						<div className='relative mr-[2.083vw]' key={i}>
 							<p
 								onClick={() => setCarVariableSelected(i)}
-								className={`text-[40px] cursor-pointer duration-300 ease-in-out lg:hover:text-white ${
+								className={`text-[6.667vw] lg:text-[2.083vw] cursor-pointer duration-300 ease-in-out lg:hover:text-white ${
 									carVariableSelected === i ? '' : 'text-[#414141]'
 								}`}
 							>
@@ -79,7 +85,7 @@ export const Discount = () => {
 							<div
 								className={`absolute top-[60%] -z-10 duration-300 ease-in-out -rotate-[1deg] ${
 									carVariableSelected === i ? 'w-full' : 'w-0'
-								}  h-[15px] bg-[#33B7BC]`}
+								}  h-[1.389vw] lg:h-[0.781vw] bg-[#33B7BC]`}
 							></div>
 						</div>
 					))}

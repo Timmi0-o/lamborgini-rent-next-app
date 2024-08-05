@@ -1,17 +1,17 @@
 .glowing_left {
-	width: 400px;
-	height: 400px;
+	width: 20.833vw;
+	height: 20.833vw;
 	background-color: transparent;
 	/* Цвет фона div (если нужен) */
-	box-shadow: 550px 100px 310px 125px #143348;
+	box-shadow: 28.646vw 5.208vw 16.146vw 6.51vw #143348;
 	z-index: 20;
 }
 
 .glowing_right {
-	width: 200px;
-	height: 200px;
+	width: 10.417vw;
+	height: 10.417vw;
 	background-color: transparent;
 	/* Цвет фона div (если нужен) */
-	box-shadow: 550px 100px 310px 125px #143348;
+	box-shadow: 28.646vw 5.208vw 16.146vw 6.51vw #143348;
 	z-index: 20;
 }

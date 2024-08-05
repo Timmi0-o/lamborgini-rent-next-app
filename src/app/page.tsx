@@ -1,5 +1,5 @@
 import { AboutUs } from '@/components/layouts/AboutUs/AboutUs'
-import { Advantages } from '@/components/layouts/Advantages'
+import { Advantages } from '@/components/layouts/Advantage/Advantages'
 import { AskUs } from '@/components/layouts/AskUs'
 import { Discount } from '@/components/layouts/Discount/Discount'
 import { MostPopular } from '@/components/layouts/MostPopular'
@@ -10,7 +10,9 @@ import { Section } from '@/components/ui/Section'
 export default function Home() {
 	return (
 		<Section>
-			<MostPopular />
+			<div className='hidden lg:block'>
+				<MostPopular />
+			</div>
 			<RentCars />
 			<AboutUs />
 			<Reviews />

@@ -1,0 +1,14 @@
+.mobile_container_wrapper {
+	transform: rotateY(19deg) rotateX(344deg);
+	rotate: -5deg;
+}
+
+.glowing_div {
+	width: 40.833vw;
+	/* Установите желаемую ширину */
+	height: 40.833vw;
+	/* Установите желаемую высоту */
+	background-color: transparent;
+	/* Цвет фона div (если нужен) */
+	box-shadow: 58.646vw 5.208vw 126.146vw 6.51vw rgba(5, 60, 170, 0.494);
+}

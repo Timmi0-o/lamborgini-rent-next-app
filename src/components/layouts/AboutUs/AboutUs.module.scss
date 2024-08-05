@@ -1,16 +1,21 @@
 .glowing_div {
-	width: 400px;
+	width: 20.833vw;
 	/* Установите желаемую ширину */
-	height: 400px;
+	height: 20.833vw;
 	/* Установите желаемую высоту */
 	background-color: transparent;
 	/* Цвет фона div (если нужен) */
-	box-shadow: 550px 100px 310px 125px rgba(5, 60, 170, 0.149);
+	box-shadow: 28.646vw 5.208vw 16.146vw 6.51vw rgba(5, 60, 170, 0.149);
 }
 
 .number {
-	text-shadow: 0 0 15px #22ECF3;
-	-webkit-text-stroke: 2px #22ECF3;
+	text-shadow: 0 0 0.781vw #22ECF3;
+	-webkit-text-stroke: 0.104vw #22ECF3;
+
+	@media only screen and (max-width: 1024px) {
+		text-shadow: 0 0 2vw #22ECF3;
+		-webkit-text-stroke: 0.5vw #22ECF3;
+	}
 }
 
 .quote_glow {

@@ -1,21 +1,22 @@
+import { ReactNode } from 'react'
 import style from './ButtonSecond.module.scss'
 
 interface ButtonSecondProps {
-	title: string
+	children: ReactNode
 	heightCustom?: string
 }
 
-export const ButtonSecond = ({ title, heightCustom }: ButtonSecondProps) => {
+export const ButtonSecond = ({ children, heightCustom }: ButtonSecondProps) => {
 	return (
 		<button
 			className={
 				`w-full duration-200 ease-in-out ${
-					heightCustom ? heightCustom : 'h-[54px]'
-				} border-[1px] border-[#33B7BC] rounded-[8px] lg:hover:bg-[#2EACB0] lg:hover:text-white ` +
+					heightCustom ? heightCustom : 'h-[10.833vw] lg:h-[2.813vw]'
+				} border-[0.052vw] border-[#33B7BC] rounded-[2.222vw] lg:rounded-[0.417vw] lg:hover:bg-[#2EACB0] lg:hover:text-white text-[3.611vw] lg:text-[0.781vw] ` +
 				style.hoverShadow
 			}
 		>
-			{title}
+			{children}
 		</button>
 	)
 }

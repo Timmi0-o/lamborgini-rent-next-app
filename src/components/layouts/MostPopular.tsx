@@ -6,34 +6,29 @@ import { Input } from '../ui/Input'
 export const MostPopular = () => {
 	const [carSelected, setCarSelected] = useState(1)
 	return (
-		<div className='flex justify-center items-start mt-[180px]'>
+		<div className='flex justify-center items-start mt-[9.375vw]'>
 			{/* PREVIEW CAR  */}
-			<Image
-				src={'/icons/mostPopularLamborghini.png'}
-				width={1100}
-				height={860}
-				alt=''
-			/>
-			<div className='flex flex-col gap-[50px] ml-[60px]'>
+			<div className='relative w-[57.292vw] h-[44.792vw]'>
+				<Image src={'/icons/mostPopularLamborghini.png'} fill alt='' />
+			</div>
+			<div className='flex flex-col gap-[2.604vw] ml-[3.125vw]'>
 				{/* TITLE  */}
-				<h2 className='text-[70px] leading-[50px]'>Most Popular</h2>
+				<h2 className='text-[3.646vw] leading-[2.604vw]'>Most Popular</h2>
 				{/* INPUT  */}
-				<div className='w-[700px]'>
+				<div className='w-[36.458vw]'>
 					<Input placeholder='Car search' img />
 				</div>
 				{/* SELECT CAR  */}
-				<div className='flex gap-[69px]'>
+				<div className='flex gap-[3.646vw]'>
 					{/* INDICATOR  */}
-					<div className='flex flex-col items-center w-[48px]'>
-						<Image src={'/arrow.svg'} width={46} height={46} alt='' />
-						<div className='w-[4px] h-[495px] bg-[#2C2C2C]'></div>
-						<Image
-							className=' rotate-180'
-							src={'/arrow.svg'}
-							width={46}
-							height={46}
-							alt=''
-						/>
+					<div className='flex flex-col items-center w-[2.5vw]'>
+						<div className='relative size-[2.396vw]'>
+							<Image src={'/arrow.svg'} fill alt='' />
+						</div>
+						<div className='w-[0.208vw] h-[25.781vw] bg-[#2C2C2C]'></div>
+						<div className='relative size-[2.396vw]'>
+							<Image className='rotate-180' src={'/arrow.svg'} fill alt='' />
+						</div>
 					</div>
 					{/* CARS & BUTTON  */}
 					<div>
@@ -42,13 +37,13 @@ export const MostPopular = () => {
 								<div
 									onClick={() => setCarSelected(i)}
 									style={{
-										transform: i !== carSelected ? `translateX(30px)` : '',
+										transform: i !== carSelected ? `translateX(1.563vw)` : '',
 									}}
-									className={`relative mb-[33px] duration-500 ease-in-out cursor-pointer`}
+									className={`relative mb-[1.719vw] duration-500 ease-in-out cursor-pointer`}
 									key={i}
 								>
 									<h2
-										className={`text-[24px] font-bold mb-[21px] duration-200 ${
+										className={`text-[1.25vw] font-bold mb-[1.094vw] duration-200 ${
 											carSelected === i ? 'text-[#33B7BC]' : 'text-[#ffffff68]'
 										}`}
 									>
@@ -67,18 +62,18 @@ export const MostPopular = () => {
 										}`}
 									>
 										<div>
-											<div className='w-full h-[2px] bg-[#2C2C2C] mt-[10px]'></div>
-											<div className='w-[55%] h-[2px] bg-[#2C2C2C] rotate-45 ml-[-98px] mt-[-42px]'></div>
+											<div className='w-full h-[0.104vw] bg-[#2C2C2C] mt-[0.521vw]'></div>
+											<div className='w-[6vw] h-[0.104vw] bg-[#2C2C2C] rotate-45 ml-[-5.104vw] mt-[-2.188vw]'></div>
 										</div>
-										<div className='flex items-center justify-center size-[20px] bg-[#33B7BC] rounded-full mt-[-100px] ml-[-100px]'>
-											<div className='flex items-center justify-center size-[14px] bg-white rounded-full'></div>
+										<div className='flex items-center justify-center size-[1.042vw] bg-[#33B7BC] rounded-full mt-[-5.208vw] ml-[-5.208vw]'>
+											<div className='flex items-center justify-center size-[0.729vw] bg-white rounded-full'></div>
 										</div>
 									</div>
 								</div>
 							))}
 						</div>
 						{/* VIEW ALL BUTTON  */}
-						<button className='w-[215px] h-[57px] text-[15px] font-bold bg-[#33B7BC] rounded-[10px]'>
+						<button className='w-[11.198vw] h-[2.969vw] text-[0.781vw] font-bold bg-[#33B7BC] rounded-[0.521vw]'>
 							View all
 						</button>
 					</div>
