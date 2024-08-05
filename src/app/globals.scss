@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: white;
+  background-color: #161516;
+  white-space: pre-wrap;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Стили для ползунка скроллбара */
+::-webkit-scrollbar-thumb {
+  background: #555155;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8a8a8a;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .headerGradient {
+    background: linear-gradient(rgba(0, 0, 0, 0.801) 0%, rgba(0, 0, 0, 0.225) 70%);
+  }
+}

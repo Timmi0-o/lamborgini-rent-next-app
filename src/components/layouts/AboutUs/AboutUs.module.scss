@@ -1,0 +1,21 @@
+.glowing_div {
+	width: 400px;
+	/* Установите желаемую ширину */
+	height: 400px;
+	/* Установите желаемую высоту */
+	background-color: transparent;
+	/* Цвет фона div (если нужен) */
+	box-shadow: 550px 100px 310px 125px rgba(5, 60, 170, 0.149);
+}
+
+.number {
+	text-shadow: 0 0 15px #22ECF3;
+	-webkit-text-stroke: 2px #22ECF3;
+}
+
+.quote_glow {
+	color: white;
+	background: linear-gradient(90deg, rgb(255, 255, 255) 15%, #33B7BC, rgb(255, 255, 255) 80%);
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
