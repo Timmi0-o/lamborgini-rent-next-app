@@ -10,7 +10,7 @@ import { Section } from '@/components/ui/Section'
 export default function Home() {
 	return (
 		<Section>
-			<div className='hidden lg:block'>
+			<div className='hidden xl:block'>
 				<MostPopular />
 			</div>
 			<RentCars />

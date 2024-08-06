@@ -50,7 +50,7 @@ export const MostPopular = () => {
 										{car.manufacture}
 									</h2>
 									<p
-										className={`duration-200 ${
+										className={`duration-200 text-[0.833vw] ${
 											carSelected === i ? 'text-[#049393]' : 'text-[#ffffff2e]'
 										}`}
 									>

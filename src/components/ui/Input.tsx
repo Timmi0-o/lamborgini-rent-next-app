@@ -37,10 +37,10 @@ export const Input = ({
 					: ` ${
 							inputFocus
 								? 'border-[#33B7BC]'
-								: 'border-[#43434358] lg:hover:border-[#434343d3]'
+								: 'border-[#43434358] xl:hover:border-[#434343d3]'
 					  }`
-			} bg-[#1C1C1C] w-full rounded-[2.778vw] lg:rounded-[0.521vw] px-[5.556vw] lg:px-[1.563vw] ${
-				heightCustom ? heightCustom : 'h-[16.667vw] lg:h-[4.688vw]'
+			} bg-[#1C1C1C] w-full rounded-[2.778vw] md:rounded-[1vw] xl:rounded-[0.521vw] px-[5.556vw] xl:px-[1.563vw] ${
+				heightCustom ? heightCustom : 'h-[16.667vw] md:h-[10vw] xl:h-[4.688vw]'
 			}`}
 		>
 			<input
@@ -48,15 +48,15 @@ export const Input = ({
 				onBlur={() => setInputFocus(false)}
 				type='text'
 				placeholder={placeholder}
-				className='size-full rounded-[0.521vw] bg-transparent outline-none text-[4.167vw] lg:text-[1.042vw] pl-[1.563vw]]'
+				className='size-full rounded-[0.521vw] bg-transparent outline-none text-[4.167vw] md:text-[2.5vw] xl:text-[1.042vw] pl-[1.563vw]]'
 			/>
 			{img && (
 				<div
 					className={`flex items-center ${
-						imgStart ? 'mr-[3.889vw] lg:mr-[0.729vw]' : ''
+						imgStart ? 'mr-[3.889vw] xl:mr-[0.729vw]' : ''
 					}`}
 				>
-					<div className='relative size-[5.833vw] lg:size-[1.563vw]'>
+					<div className='relative size-[5.833vw] xl:size-[1.563vw]'>
 						<Image
 							fill
 							src={imgCustom ? imgCustom : '/search.svg'}

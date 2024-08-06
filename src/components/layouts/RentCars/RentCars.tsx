@@ -1,6 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/Button/Button'
-import { ButtonSecond } from '@/components/ui/ButtonSecond.module/ButtonSecond'
+import { ButtonSecond } from '@/components/ui/ButtonSecond/ButtonSecond'
 import Image from 'next/image'
 import { useState } from 'react'
 import 'swiper/css'
@@ -11,14 +11,14 @@ import styles from './RentCars.module.scss'
 export const RentCars = () => {
 	const [carVariableSelected, setCarVariableSelected] = useState(0)
 	return (
-		<div className='mt-[13.542vw]'>
+		<div className='mt-[8vw] xl:mt-[13.542vw]'>
 			{/* NAV LINKS  PC*/}
-			<div className='hidden lg:flex justify-center gap-[2.604vw] mb-[2.604vw]'>
+			<div className='hidden xl:flex justify-center gap-[2.604vw] mb-[2.604vw]'>
 				{navLinks.map((nav, i) => (
 					<div className='relative' key={i}>
 						<p
 							onClick={() => setCarVariableSelected(i)}
-							className={`text-[2.083vw] cursor-pointer duration-300 ease-in-out lg:hover:text-white ${
+							className={`text-[2.083vw] cursor-pointer duration-300 ease-in-out xl:hover:text-white ${
 								carVariableSelected === i ? '' : 'text-[#414141]'
 							}`}
 						>
@@ -32,8 +32,8 @@ export const RentCars = () => {
 					</div>
 				))}
 			</div>
-			{/* NAV LINKS  MOBILE*/}
-			<div className='block lg:hidden mb-[8.571vw]'>
+			{/* NAV LINKS  MOBILE */}
+			<div className='flex justify-center xl:hidden mb-[8.571vw]'>
 				<Swiper
 					slidesPerView='auto'
 					spaceBetween={30}
@@ -46,7 +46,7 @@ export const RentCars = () => {
 							<div className='relative' key={i}>
 								<p
 									onClick={() => setCarVariableSelected(i)}
-									className={`text-[4.571vw] cursor-pointer duration-300 ease-in-out lg:hover:text-white w-fit ${
+									className={`text-[4.571vw] md:text-[3vw] cursor-pointer duration-300 ease-in-out xl:hover:text-white w-fit ${
 										carVariableSelected === i ? '' : 'text-[#414141]'
 									}`}
 								>
@@ -65,18 +65,20 @@ export const RentCars = () => {
 			{/* CARS & BUTTON VIEW  */}
 			<div className='flex flex-col items-center'>
 				{/* CARS  */}
-				<div className='flex flex-wrap gap-[1.389vw] lg:gap-[0.521vw]'>
+				<div className='flex flex-wrap gap-[1.389vw] md:gap-[1vw] xl:gap-[0.521vw]'>
 					{cars.map((car, i) => (
 						<div
-							className={`relative w-[100vw] lg:w-[49.479vw] h-[66.667vw] lg:h-[28.646vw]`}
+							className={`relative w-[100vw] md:w-[49vw] xl:w-[49.479vw] h-[66.667vw] md:h-[35vw] xl:h-[28.646vw]`}
 							key={i}
 						>
 							<Image src={car.img} fill alt='car' />
 							<div
 								className={`flex justify-between items-end px-[3.125vw] pb-[2.083vw] absolute size-full ${styles.carBackground}`}
 							>
-								<h2 className='text-[5vw] lg:text-[2.083vw]'>{car.title}</h2>
-								<div className='w-[21.944vw] lg:w-[5.625vw]'>
+								<h2 className='text-[5vw] md:text-[2.5vw] xl:text-[2.083vw]'>
+									{car.title}
+								</h2>
+								<div className='w-[21.944vw] md:w-[15vw] xl:w-[5.625vw]'>
 									<ButtonSecond>Rent</ButtonSecond>
 								</div>
 							</div>
@@ -86,7 +88,7 @@ export const RentCars = () => {
 				{/* VIEW ALL CARS BUTTON  */}
 				<div
 					className={
-						'w-[88.889vw] lg:w-[18.229vw] mt-[8.333vw] lg:mt-[3.125vw]'
+						'w-[88.889vw] md:w-[40vw] xl:w-[18.229vw] mt-[8.333vw] xl:mt-[3.125vw]'
 					}
 				>
 					<Button>View all</Button>
