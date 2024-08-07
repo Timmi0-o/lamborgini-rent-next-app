@@ -1,5 +1,3 @@
-import { Footer } from '@/components/layouts/Footer/Footer'
-import { Header } from '@/components/layouts/Header'
 import { Provider } from '@/components/layouts/Provider'
 import { stolzl } from '@/components/utils/font'
 import type { Metadata } from 'next'
@@ -18,11 +16,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={stolzl.className}>
-				<Provider>
-					<Header />
-					{children}
-					<Footer />
-				</Provider>
+				<Provider>{children}</Provider>
 			</body>
 		</html>
 	)
