@@ -1,13 +1,51 @@
 'use client'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/all'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Button } from '../ui/Button/Button'
 import { Input } from '../ui/Input'
 
 export const MostPopular = () => {
 	const [carSelected, setCarSelected] = useState(1)
+
+	const popularWrapper = useRef(null)
+
+	useGSAP(() => {
+		gsap.registerPlugin(ScrollTrigger)
+
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: popularWrapper.current,
+				start: 'top-=70%',
+				end: 'top-=30%',
+				scrub: false,
+				markers: true,
+			},
+		})
+		gsap.utils.toArray('#car-variable').forEach((car, i) => {
+			tl.fromTo(
+				car,
+				{
+					x: 400,
+					opacity: 0,
+				},
+				{
+					x: 0,
+					opacity: 1,
+					duration: 1.2,
+					ease: 'back.inOut',
+				},
+				'-=0.8'
+			)
+		})
+	}, [])
 	return (
-		<div className='flex justify-center items-start mt-[9.375vw]'>
+		<div
+			ref={popularWrapper}
+			className='flex justify-center items-start mt-[9.375vw]'
+		>
 			{/* PREVIEW CAR  */}
 			<div className='relative w-[57.292vw] h-[44.792vw]'>
 				<Image src={'/icons/mostPopularLamborghini.png'} fill alt='' />
@@ -36,38 +74,47 @@ export const MostPopular = () => {
 						<div>
 							{cars.map((car, i) => (
 								<div
+									id='car-variable'
 									onClick={() => setCarSelected(i)}
-									style={{
-										transform: i !== carSelected ? `translateX(1.563vw)` : '',
-									}}
-									className={`relative mb-[1.719vw] duration-500 ease-in-out cursor-pointer`}
+									className={`relative mb-[1.719vw] cursor-pointer`}
 									key={i}
 								>
-									<h2
-										className={`text-[1.25vw] font-bold mb-[1.094vw] duration-200 ${
-											carSelected === i ? 'text-[#33B7BC]' : 'text-[#ffffff68]'
-										}`}
-									>
-										{car.manufacture}
-									</h2>
-									<p
-										className={`duration-200 text-[0.833vw] ${
-											carSelected === i ? 'text-[#049393]' : 'text-[#ffffff2e]'
-										}`}
-									>
-										{car.model}
-									</p>
 									<div
-										className={`duration-300 ease-in-out delay-200 ${
-											carSelected === i ? 'opacity-100' : 'opacity-0'
-										}`}
+										style={{
+											transform: i !== carSelected ? `translateX(1.563vw)` : '',
+										}}
+										className='duration-300 ease-in-out'
 									>
-										<div>
-											<div className='w-full h-[0.104vw] bg-[#2C2C2C] mt-[0.521vw]'></div>
-											<div className='w-[6vw] h-[0.104vw] bg-[#2C2C2C] rotate-45 ml-[-5.104vw] mt-[-2.188vw]'></div>
-										</div>
-										<div className='flex items-center justify-center size-[1.042vw] bg-[#33B7BC] rounded-full mt-[-5.208vw] ml-[-5.208vw]'>
-											<div className='flex items-center justify-center size-[0.729vw] bg-white rounded-full'></div>
+										<h2
+											className={`text-[1.25vw] font-bold mb-[1.094vw] duration-200 ${
+												carSelected === i
+													? 'text-[#33B7BC]'
+													: 'text-[#ffffff68]'
+											}`}
+										>
+											{car.manufacture}
+										</h2>
+										<p
+											className={`duration-200 text-[0.833vw] ${
+												carSelected === i
+													? 'text-[#049393]'
+													: 'text-[#ffffff2e]'
+											}`}
+										>
+											{car.model}
+										</p>
+										<div
+											className={`duration-300 ease-in-out delay-200 ${
+												carSelected === i ? 'opacity-100' : 'opacity-0'
+											}`}
+										>
+											<div>
+												<div className='w-full h-[0.104vw] bg-[#2C2C2C] mt-[0.521vw]'></div>
+												<div className='w-[6vw] h-[0.104vw] bg-[#2C2C2C] rotate-45 ml-[-5.104vw] mt-[-2.188vw]'></div>
+											</div>
+											<div className='flex items-center justify-center size-[1.042vw] bg-[#33B7BC] rounded-full mt-[-5.208vw] ml-[-5.208vw]'>
+												<div className='flex items-center justify-center size-[0.729vw] bg-white rounded-full'></div>
+											</div>
 										</div>
 									</div>
 								</div>
