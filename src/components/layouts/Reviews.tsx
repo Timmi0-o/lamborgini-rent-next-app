@@ -1,11 +1,12 @@
 'use client'
 import Image from 'next/image'
 import { useState } from 'react'
-import { FreeMode, Mousewheel } from 'swiper/modules'
+import { Mousewheel } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 export const Reviews = () => {
 	const [reviewHover, setReviewHover] = useState<number | null>(null)
+
 	return (
 		<div className='mt-[25vw] md:mt-[18vw] xl:mt-[13.542vw]'>
 			{/* TITLE  */}
@@ -46,11 +47,12 @@ export const Reviews = () => {
 			<div className='flex flex-col xl:hidden item-center'>
 				<div className='flex justify-center'>
 					<Swiper
-						slidesPerView='auto'
+						onSlideChange={(swiper) => setReviewHover(swiper.activeIndex)}
+						onActiveIndexChange={(swiper) => setReviewHover(swiper.activeIndex)}
+						slidesPerView={1.7}
 						spaceBetween={4}
-						modules={[Mousewheel, FreeMode]}
+						modules={[Mousewheel]}
 						mousewheel={{ forceToAxis: true }}
-						freeMode={{ enabled: true, sticky: false }}
 					>
 						{Array.from({ length: 4 }).map((_, i) => (
 							<SwiperSlide className='!w-fit' key={i}>
@@ -66,8 +68,8 @@ export const Reviews = () => {
 										}`}
 									>
 										{/* PLAY BUTTON  */}
-										<div className='flex justify-center items-center size-[4.167vw] md:size-[3vw] bg-[#33B7BC] rounded-full border-[0.208vw] border-[#71bdc0a7] cursor-pointer'>
-											<div className='relative w-[1.042vw] h-[1.667vw]'>
+										<div className='flex justify-center items-center size-[14.167vw] md:size-[3vw] bg-[#33B7BC] rounded-full border-[0.208vw] border-[#71bdc0a7] cursor-pointer'>
+											<div className='relative w-[4vw] h-[4.1vw] xl:w-[1.042vw] xl:h-[1.667vw]'>
 												<Image src={'/play.svg'} fill alt='play' />
 											</div>
 										</div>

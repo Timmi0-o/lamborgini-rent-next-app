@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { useState } from 'react'
+import { Button } from '../ui/Button/Button'
 import { Input } from '../ui/Input'
 
 export const MostPopular = () => {
@@ -73,9 +74,9 @@ export const MostPopular = () => {
 							))}
 						</div>
 						{/* VIEW ALL BUTTON  */}
-						<button className='w-[11.198vw] h-[2.969vw] text-[0.781vw] font-bold bg-[#33B7BC] rounded-[0.521vw]'>
-							View all
-						</button>
+						<div className='w-[11.198vw]'>
+							<Button>View all</Button>
+						</div>
 					</div>
 				</div>
 			</div>

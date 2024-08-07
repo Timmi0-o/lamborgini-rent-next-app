@@ -5,7 +5,7 @@ import { Input } from '../ui/Input'
 export const AskUs = () => {
 	return (
 		<div className='flex flex-row md:flex-col xl:flex-row justify-center gap-[3.125vw] mt-[13.542vw] md:items-center lg:item-baseline'>
-			<div className='hidden md:block relative w-[90vw] xl:w-[57.292vw] h-[60vw] xl:h-[44.792vw]'>
+			<div className='hidden md:block z-30 relative w-[90vw] xl:w-[57.292vw] h-[60vw] xl:h-[44.792vw]'>
 				<Image src={'/icons/map.png'} fill alt='map' />
 			</div>
 			<div className='xl:mr-[3.125vw]'>
