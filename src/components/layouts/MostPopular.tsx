@@ -24,7 +24,7 @@ export const MostPopular = () => {
 				markers: true,
 			},
 		})
-		gsap.utils.toArray('#car-variable').forEach((car, i) => {
+		gsap.utils.toArray<HTMLElement>('#car-variable').forEach((car) => {
 			tl.fromTo(
 				car,
 				{
