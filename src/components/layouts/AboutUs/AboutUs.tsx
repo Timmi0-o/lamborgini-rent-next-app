@@ -64,7 +64,7 @@ export const AboutUs = () => {
 						x: 0,
 						opacity: 1,
 						duration: 0.8,
-						delay: `${indx !== 0 ? indx / 10 + 0.2 : 0}`,
+						delay: indx !== 0 ? indx / 10 + 0.2 : 0,
 						ease: 'back.inOut',
 						scrollTrigger: {
 							trigger: aboutUsWrapper.current,
@@ -73,8 +73,7 @@ export const AboutUs = () => {
 							scrub: false,
 							// markers: true,
 						},
-					},
-					'<'
+					}
 				)
 			})
 
