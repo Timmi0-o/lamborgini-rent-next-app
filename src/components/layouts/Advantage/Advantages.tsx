@@ -16,10 +16,25 @@ export const Advantages = () => {
 		const t = gsap.timeline({
 			scrollTrigger: {
 				trigger: advantageWrapper.current,
-				start: 'top-=110%',
+				start: () => {
+					const { innerWidth: w, innerHeight: h } = window
+					const conditions = [
+						{ cond: w >= 1600 && h >= 900, value: 'top-=110%' },
+						{ cond: w >= 1200 && h > 900, value: 'top-=110%' },
+						{ cond: w >= 1200 && h < 850, value: 'top-=110%' },
+						{ cond: w >= 1024 && h >= 1200, value: 'top-=110%' },
+						{ cond: w >= 1024 && h >= 600, value: 'top-=110%' },
+						{ cond: w >= 800 && h >= 900, value: 'top-=110%' },
+						{ cond: w >= 770 && h < 600, value: 'top-=110%' },
+					]
+					for (const { cond, value } of conditions) {
+						if (cond) return value
+					}
+					return 'top-=300%'
+				},
 				end: 'top-=30%',
 				scrub: 1.4,
-				markers: true,
+				// markers: true,
 			},
 		})
 
@@ -49,7 +64,7 @@ export const Advantages = () => {
 						start: 'top-=50%',
 						end: 'top-=20%',
 						scrub: false,
-						markers: true,
+						// markers: true,
 					},
 				}
 			)

@@ -22,8 +22,39 @@ export const RentCars = () => {
 		const t = gsap.timeline({
 			scrollTrigger: {
 				trigger: rentWrapper.current,
-				start: 'top-=70%',
-				end: 'top-=30%',
+				start: () => {
+					const { innerWidth: w, innerHeight: h } = window
+					const conditions = [
+						{ cond: w >= 1600 && h >= 900, value: 'top-=70%' },
+						{ cond: w >= 1200 && h > 900, value: 'top-=70%' },
+						{ cond: w >= 1200 && h < 850, value: 'top-=70%' },
+						{ cond: w >= 1024 && h >= 1200, value: 'top-=140%' },
+						{ cond: w >= 1024 && h >= 600, value: 'top-=60%' },
+						{ cond: w >= 800 && h >= 900, value: 'top-=150%' },
+						{ cond: w >= 770 && h < 600, value: 'top-=70%' },
+					]
+					for (const { cond, value } of conditions) {
+						if (cond) {
+							console.log(cond, value)
+							return value
+						}
+					}
+					return 'top-=70%'
+				},
+				end: () => {
+					const { innerWidth: w, innerHeight: h } = window
+					const conditions = [
+						{ cond: w >= 1600 && h >= 900, value: 'top-=30%' },
+						{ cond: w >= 1200 && h > 900, value: 'top-=30%' },
+						{ cond: w >= 1200 && h < 850, value: 'top-=30%' },
+						{ cond: w >= 1024 && h >= 600, value: 'top-=10%' },
+						{ cond: w >= 770 && h < 600, value: 'top-=30%' },
+					]
+					for (const { cond, value } of conditions) {
+						if (cond) return value
+					}
+					return 'top-=30%'
+				},
 				scrub: false,
 				// markers: true,
 			},

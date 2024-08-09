@@ -67,21 +67,19 @@ export const Header = () => {
 				ease: 'expo.inOut',
 				scale: 2,
 				y: () => {
-					const screenWidth = window.innerWidth
-					const screenHeight = window.innerHeight
-					if (screenWidth >= 1600 && screenHeight >= 900) {
-						return '15vw'
-					} else if (screenWidth >= 1200 && screenHeight > 900) {
-						return '20vw'
-					} else if (screenWidth >= 1200 && screenHeight < 850) {
-						return '30vw'
-					} else if (screenWidth >= 1024 && screenHeight >= 600) {
-						return '15vw'
-					} else if (screenWidth >= 770 && screenHeight < 600) {
-						return '75vw'
-					} else {
-						return '60vw'
+					const { innerWidth: w, innerHeight: h } = window
+					const conditions = [
+						{ cond: w >= 1600 && h >= 900, value: '15vw' },
+						{ cond: w >= 1200 && h > 900, value: '35vw' },
+						{ cond: w >= 1200 && h < 850, value: '30vw' },
+						{ cond: w >= 1024 && h >= 1200, value: '65vw' },
+						{ cond: w >= 1024 && h >= 600, value: '15vw' },
+						{ cond: w >= 770 && h < 600, value: '75vw' },
+					]
+					for (const { cond, value } of conditions) {
+						if (cond) return value
 					}
+					return '55vw'
 				},
 			}
 		)
@@ -142,7 +140,7 @@ export const Header = () => {
 				{/* HEADER INFO  */}
 				<div className='absolute top-0 left-0 size-full z-30'>
 					{/* HEADER NAVIGATION && LOGO  */}
-					<div className='flex items-center justify-between pt-[8.571vw] xl:pt-[2.083vw] px-[3.125vw]'>
+					<div className='flex items-center justify-between pt-[8.571vw] md:pt-[0px] xl:pt-[2.083vw] px-[3.125vw]'>
 						{/* LEFT NAVIGATE  */}
 						<div className='flex'>
 							{/* HAMBURGER  */}
@@ -192,7 +190,7 @@ export const Header = () => {
 						</div>
 					</div>
 					{/* TITLE  */}
-					<div className='flex flex-col items-center w-full mt-[60vw] md:mt-[5vw] xl:mt-[12vw]'>
+					<div className='flex flex-col items-center w-full mt-[60vw] sm:mt-[25vw] md:mt-[15vw] xl:mt-[12vw]'>
 						<h1
 							ref={cityText}
 							className='text-[17.143vw] md:text-[10vw] xl:text-[6.25vw] font-medium leading-[15.714vw] md:leading-[10vw] xl:leading-[5.688vw] mb-[2%]'

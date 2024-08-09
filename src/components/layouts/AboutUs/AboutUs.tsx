@@ -28,7 +28,7 @@ export const AboutUs = () => {
 				start: 'top-=60%',
 				end: 'top-=30%',
 				scrub: 1.4,
-				markers: true,
+				// markers: true,
 			},
 		})
 
@@ -79,14 +79,14 @@ export const AboutUs = () => {
 
 		gsap.fromTo(
 			quote.current,
-			{ y: 200 },
+			{ y: 300 },
 			{
 				y: 0,
 				scrollTrigger: {
 					trigger: aboutUsWrapper.current,
-					start: 'top-=20%',
-					end: 'top top',
-					scrub: 1.4,
+					start: 'top-=10%',
+					end: 'top+=10',
+					scrub: 1.8,
 					// markers: true,
 				},
 			}

@@ -19,10 +19,24 @@ export const Reviews = () => {
 		const t = gsap.timeline({
 			scrollTrigger: {
 				trigger: reviewWrapper.current,
-				start: 'top-=120%',
+				start: () => {
+					const { innerWidth: w, innerHeight: h } = window
+					const conditions = [
+						{ cond: w >= 1600 && h >= 900, value: 'top-=120%' },
+						{ cond: w >= 1200 && h > 900, value: 'top-=120%' },
+						{ cond: w >= 1200 && h < 850, value: 'top-=120%' },
+						{ cond: w >= 1024 && h >= 1200, value: 'top-=300%' },
+						{ cond: w >= 1024 && h >= 600, value: 'top-=120%' },
+						{ cond: w >= 770 && h < 600, value: 'top-=120%' },
+					]
+					for (const { cond, value } of conditions) {
+						if (cond) return value
+					}
+					return 'top-=320%'
+				},
 				end: 'top-=30%',
 				scrub: 1.4,
-				markers: true,
+				// markers: true,
 			},
 		})
 
@@ -47,7 +61,22 @@ export const Reviews = () => {
 				ease: 'power3.inOut',
 				scrollTrigger: {
 					trigger: reviewWrapper.current,
-					start: 'top-=60%',
+					start: () => {
+						const { innerWidth: w, innerHeight: h } = window
+						const conditions = [
+							{ cond: w >= 1600 && h >= 900, value: 'top-=60%' },
+							{ cond: w >= 1200 && h > 900, value: 'top-=60%' },
+							{ cond: w >= 1200 && h < 850, value: 'top-=60%' },
+							{ cond: w >= 1024 && h >= 1200, value: 'top-=150%' },
+							{ cond: w >= 1024 && h >= 600, value: 'top-=60%' },
+							{ cond: w >= 800 && h >= 900, value: 'top-=160%' },
+							{ cond: w >= 770 && h < 600, value: 'top-=60%' },
+						]
+						for (const { cond, value } of conditions) {
+							if (cond) return value
+						}
+						return 'top-=240%'
+					},
 					end: 'top-=20%',
 					scrub: 1.4,
 					// markers: true,
