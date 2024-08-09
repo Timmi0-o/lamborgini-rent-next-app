@@ -72,8 +72,7 @@ export const MostPopular = () => {
 					end: 'top-=60%',
 					scrub: 1.2,
 				},
-			},
-			'<'
+			}
 		)
 	}, [])
 	return (
