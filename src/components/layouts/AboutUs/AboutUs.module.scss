@@ -24,3 +24,7 @@
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
+
+.grayscale_img {
+	filter: grayscale(100%) brightness(0.7);
+}

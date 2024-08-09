@@ -11,6 +11,7 @@ export const Header = () => {
 	const [isMenu, setIsMenu] = useState(false)
 
 	const cityText = useRef(null)
+	const nameSite = useRef(null)
 	const headerGradient = useRef(null)
 	const header = useRef(null)
 
@@ -19,7 +20,7 @@ export const Header = () => {
 		gsap.fromTo(
 			cityText.current,
 			{
-				y: 100,
+				y: '10vw',
 				opacity: 0,
 			},
 			{
@@ -44,36 +45,68 @@ export const Header = () => {
 			{
 				ease: 'expo.inOut',
 				scale: 1,
-				y: 0,
+				y: '0vw',
 			},
 			{
 				scrollTrigger: {
 					trigger: header.current,
-					start: 'top-=20%',
-					end: 'bottom',
-					scrub: 1.2,
+					start: 'top-=40%',
+					end: () => {
+						const screenWidth = window.innerWidth
+						if (screenWidth >= 1600) {
+							return 'bottom'
+						} else if (screenWidth >= 1024) {
+							return 'bottom-=20%'
+						} else {
+							return 'bottom-=10%'
+						}
+					},
+					scrub: 0.6,
 					// markers: true,
 				},
 				ease: 'expo.inOut',
 				scale: 2,
-				y: 250,
+				y: () => {
+					const screenWidth = window.innerWidth
+					const screenHeight = window.innerHeight
+					if (screenWidth >= 1600 && screenHeight >= 900) {
+						return '15vw'
+					} else if (screenWidth >= 1200 && screenHeight > 900) {
+						return '20vw'
+					} else if (screenWidth >= 1200 && screenHeight < 850) {
+						return '30vw'
+					} else if (screenWidth >= 1024 && screenHeight >= 600) {
+						return '15vw'
+					} else if (screenWidth >= 770 && screenHeight < 600) {
+						return '75vw'
+					} else {
+						return '60vw'
+					}
+				},
 			}
 		)
 
-		timeline.to('.name-site', {
-			scrollTrigger: {
-				trigger: header.current,
-				start: 'top top',
-				end: 'top+=100px',
-				scrub: 1.4,
+		timeline.fromTo(
+			nameSite.current,
+			{
+				opacity: 1,
+				marginTop: '0vw',
 			},
-			ease: 'circ.inOut',
-			opacity: 0,
-			marginTop: '10vw',
-		})
+			{
+				scrollTrigger: {
+					trigger: header.current,
+					start: 'top top',
+					end: 'top+=100px',
+					scrub: 1.4,
+				},
+				ease: 'circ.inOut',
+				opacity: 0,
+				marginTop: '10vw',
+			}
+		)
 
 		gsap.fromTo(
-			'.name-site',
+			nameSite.current,
 			{
 				x: -50,
 				opacity: 0,
@@ -82,7 +115,7 @@ export const Header = () => {
 				x: 0,
 				delay: 1,
 				opacity: 1,
-				duration: 1,
+				duration: 0.8,
 				ease: 'expo.inOut',
 			}
 		)
@@ -159,14 +192,17 @@ export const Header = () => {
 						</div>
 					</div>
 					{/* TITLE  */}
-					<div className='flex flex-col items-center w-full mt-[56vw] md:mt-[8vw] xl:mt-[15.937vw]'>
+					<div className='flex flex-col items-center w-full mt-[60vw] md:mt-[5vw] xl:mt-[12vw]'>
 						<h1
 							ref={cityText}
-							className='text-[17.143vw] md:text-[9vw] xl:text-[6.25vw] font-medium leading-[25.714vw] md:leading-normal xl:leading-[4.688vw]'
+							className='text-[17.143vw] md:text-[10vw] xl:text-[6.25vw] font-medium leading-[15.714vw] md:leading-[10vw] xl:leading-[5.688vw] mb-[2%]'
 						>
 							Dubai
 						</h1>
-						<p className='name-site text-[4.857vw] md:text-[2.5vw] xl:text-[1.667vw] font-normal opacity-100'>
+						<p
+							ref={nameSite}
+							className='text-[4.857vw] md:text-[2.5vw] xl:text-[1.667vw] font-normal opacity-100'
+						>
 							luxury car rental
 						</p>
 					</div>

@@ -1,16 +1,71 @@
 'use client'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/all'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Mousewheel } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 export const Reviews = () => {
 	const [reviewHover, setReviewHover] = useState<number | null>(null)
 
+	const sectionTitle = useRef(null)
+	const reviewWrapper = useRef(null)
+
+	useGSAP(() => {
+		gsap.registerPlugin(ScrollTrigger)
+
+		const t = gsap.timeline({
+			scrollTrigger: {
+				trigger: reviewWrapper.current,
+				start: 'top-=120%',
+				end: 'top-=30%',
+				scrub: 1.4,
+				markers: true,
+			},
+		})
+
+		t.fromTo(
+			sectionTitle.current,
+			{ x: 300, scale: 0.8 },
+			{
+				x: 0,
+				scale: 1,
+				ease: 'power3.inOut',
+			}
+		)
+
+		gsap.fromTo(
+			'.reviews__item',
+			{ y: 200, scale: 0.8, paddingLeft: 10, paddingRight: 10 },
+			{
+				y: 0,
+				scale: 1,
+				paddingLeft: 0,
+				paddingRight: 0,
+				ease: 'power3.inOut',
+				scrollTrigger: {
+					trigger: reviewWrapper.current,
+					start: 'top-=60%',
+					end: 'top-=20%',
+					scrub: 1.4,
+					// markers: true,
+				},
+			}
+		)
+	}, [])
+
 	return (
-		<div className='mt-[25vw] md:mt-[18vw] xl:mt-[13.542vw]'>
+		<div
+			ref={reviewWrapper}
+			className='mt-[25vw] md:mt-[18vw] xl:mt-[13.542vw]'
+		>
 			{/* TITLE  */}
-			<h1 className='text-[11.111vw] xl:text-[8.333vw] font-medium text-center mb-[6.25vw]'>
+			<h1
+				ref={sectionTitle}
+				className='text-[11.111vw] xl:text-[8.333vw] font-medium text-center mb-[6.25vw]'
+			>
 				Reviews
 			</h1>
 			{/* REVIEWS  PC*/}
@@ -19,7 +74,7 @@ export const Reviews = () => {
 					<div
 						onMouseMove={() => setReviewHover(i)}
 						onMouseOut={() => setReviewHover(null)}
-						className='relative w-[24.479vw] h-[38.542vw] '
+						className='reviews__item relative w-[24.479vw] h-[38.542vw] '
 						key={i}
 					>
 						<div
@@ -55,7 +110,7 @@ export const Reviews = () => {
 						mousewheel={{ forceToAxis: true }}
 					>
 						{Array.from({ length: 4 }).map((_, i) => (
-							<SwiperSlide className='!w-fit' key={i}>
+							<SwiperSlide className='!w-fit reviews__item' key={i}>
 								<div
 									onMouseMove={() => setReviewHover(i)}
 									onMouseOut={() => setReviewHover(null)}

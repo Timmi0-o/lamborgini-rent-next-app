@@ -1,8 +1,11 @@
 'use client'
 import { Button } from '@/components/ui/Button/Button'
 import { ButtonSecond } from '@/components/ui/ButtonSecond/ButtonSecond'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/all'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import 'swiper/css'
 import { FreeMode, Mousewheel } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -10,12 +13,57 @@ import styles from './RentCars.module.scss'
 
 export const RentCars = () => {
 	const [carVariableSelected, setCarVariableSelected] = useState(0)
+
+	const rentWrapper = useRef(null)
+
+	useGSAP(() => {
+		gsap.registerPlugin(ScrollTrigger)
+
+		const t = gsap.timeline({
+			scrollTrigger: {
+				trigger: rentWrapper.current,
+				start: 'top-=70%',
+				end: 'top-=30%',
+				scrub: false,
+				// markers: true,
+			},
+		})
+
+		gsap.utils.toArray<HTMLElement>('#navLinks').map((nav) => {
+			t.fromTo(
+				nav,
+				{ x: 300, opacity: 0 },
+				{
+					x: 0,
+					opacity: 1,
+					duration: 1.2,
+					ease: 'back.inOut',
+				},
+				'-=0.8'
+			)
+		})
+
+		gsap.utils.toArray<HTMLElement>('#cars').map((nav, indx) => {
+			t.fromTo(
+				nav,
+				{ y: 300, opacity: 0 },
+				{
+					y: 0,
+					opacity: 1,
+					duration: 0.8,
+					delay: `${indx !== 0 ? indx / 10 + 0.2 : 0}`,
+					ease: 'back.inOut',
+				},
+				'<'
+			)
+		})
+	})
 	return (
-		<div className='mt-[8vw] xl:mt-[13.542vw]'>
+		<div ref={rentWrapper} className='mt-[8vw] xl:mt-[13.542vw]'>
 			{/* NAV LINKS  PC*/}
 			<div className='hidden xl:flex justify-center gap-[2.604vw] mb-[2.604vw]'>
 				{navLinks.map((nav, i) => (
-					<div className='relative' key={i}>
+					<div id='navLinks' className='relative' key={i}>
 						<p
 							onClick={() => setCarVariableSelected(i)}
 							className={`text-[2.083vw] cursor-pointer duration-300 ease-in-out xl:hover:text-white ${
@@ -68,6 +116,7 @@ export const RentCars = () => {
 				<div className='flex flex-wrap gap-[1.389vw] md:gap-[1vw] xl:gap-[0.521vw]'>
 					{cars.map((car, i) => (
 						<div
+							id='cars'
 							className={`relative w-[100vw] md:w-[49vw] xl:w-[49.479vw] h-[66.667vw] md:h-[35vw] xl:h-[28.646vw]`}
 							key={i}
 						>

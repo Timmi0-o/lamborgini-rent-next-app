@@ -11,21 +11,23 @@ export const MostPopular = () => {
 	const [carSelected, setCarSelected] = useState(1)
 
 	const popularWrapper = useRef(null)
+	const carPreview = useRef(null)
+	const sectionName = useRef(null)
 
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollTrigger)
 
-		const tl = gsap.timeline({
+		const t = gsap.timeline({
 			scrollTrigger: {
 				trigger: popularWrapper.current,
 				start: 'top-=70%',
 				end: 'top-=30%',
 				scrub: false,
-				markers: true,
+				// markers: true,
 			},
 		})
 		gsap.utils.toArray<HTMLElement>('#car-variable').forEach((car) => {
-			tl.fromTo(
+			t.fromTo(
 				car,
 				{
 					x: 400,
@@ -40,6 +42,39 @@ export const MostPopular = () => {
 				'-=0.8'
 			)
 		})
+
+		gsap.fromTo(
+			carPreview.current,
+			{ y: 200, opacity: 0 },
+			{
+				y: 0,
+				opacity: 1,
+				ease: 'back.in',
+				scrollTrigger: {
+					trigger: popularWrapper.current,
+					start: 'top-=90%',
+					end: 'top-=70%',
+					scrub: 1.3,
+				},
+			}
+		)
+
+		gsap.fromTo(
+			sectionName.current,
+			{ x: 300 },
+			{
+				x: 0,
+				ease: 'power3.inOut',
+				duration: 1.2,
+				scrollTrigger: {
+					trigger: popularWrapper.current,
+					start: 'top-=140%',
+					end: 'top-=60%',
+					scrub: 1.2,
+				},
+			},
+			'<'
+		)
 	}, [])
 	return (
 		<div
@@ -47,12 +82,14 @@ export const MostPopular = () => {
 			className='flex justify-center items-start mt-[9.375vw]'
 		>
 			{/* PREVIEW CAR  */}
-			<div className='relative w-[57.292vw] h-[44.792vw]'>
+			<div ref={carPreview} className='relative w-[57.292vw] h-[44.792vw]'>
 				<Image src={'/icons/mostPopularLamborghini.png'} fill alt='' />
 			</div>
 			<div className='flex flex-col gap-[2.604vw] ml-[3.125vw]'>
 				{/* TITLE  */}
-				<h2 className='text-[3.646vw] leading-[2.604vw]'>Most Popular</h2>
+				<h2 ref={sectionName} className='text-[3.646vw] leading-[2.604vw]'>
+					Most Popular
+				</h2>
 				{/* INPUT  */}
 				<div className='w-[36.458vw]'>
 					<Input placeholder='Car search' img />

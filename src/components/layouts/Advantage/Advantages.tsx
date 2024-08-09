@@ -1,18 +1,78 @@
+'use client'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/all'
 import Image from 'next/image'
+import { useRef } from 'react'
 import style from './Advantage.module.scss'
 
 export const Advantages = () => {
+	const sectionTitle = useRef(null)
+	const advantageWrapper = useRef(null)
+
+	useGSAP(() => {
+		gsap.registerPlugin(ScrollTrigger)
+
+		const t = gsap.timeline({
+			scrollTrigger: {
+				trigger: advantageWrapper.current,
+				start: 'top-=110%',
+				end: 'top-=30%',
+				scrub: 1.4,
+				markers: true,
+			},
+		})
+
+		t.fromTo(
+			sectionTitle.current,
+			{ x: 300, scale: 0.8 },
+			{
+				x: 0,
+				scale: 1,
+				ease: 'power3.inOut',
+			},
+			'<'
+		)
+
+		gsap.utils.toArray<HTMLElement>('.advantage__items').map((nav, indx) => {
+			gsap.fromTo(
+				nav,
+				{ y: 300, opacity: 0 },
+				{
+					y: 0,
+					opacity: 1,
+					duration: 0.8,
+					delay: `${indx !== 0 ? (indx / 10) * 2 : 0}`,
+					ease: 'back.inOut',
+					scrollTrigger: {
+						trigger: advantageWrapper.current,
+						start: 'top-=50%',
+						end: 'top-=20%',
+						scrub: false,
+						markers: true,
+					},
+				}
+			)
+		})
+	}, [])
+
 	return (
-		<div className='flex flex-col items-center mt-[13.542vw]'>
+		<div
+			ref={advantageWrapper}
+			className='flex flex-col items-center mt-[13.542vw]'
+		>
 			{/* TITLE  */}
-			<h1 className='text-[11.111vw] xl:text-[8.333vw] text-center mb-[6.302vw]'>
+			<h1
+				ref={sectionTitle}
+				className='text-[11.111vw] xl:text-[8.333vw] text-center mb-[6.302vw]'
+			>
 				Advantages
 			</h1>
 			{/* ADVANTAGES PC */}
 			<div className='hidden md:flex flex-wrap'>
 				{advantagesDescription.map((title, i) => (
 					<div
-						className='relative w-[49.5vw] xl:w-[33.073vw] h-[35vw] xl:h-[23.958vw] border-[0.052vw] border-[#272727]'
+						className='advantage__items relative w-[49.5vw] xl:w-[33.073vw] h-[35vw] xl:h-[23.958vw] border-[0.052vw] border-[#272727]'
 						key={i}
 					>
 						<div className='flex items-end absolute size-full top-0 left-0 z-20'>
