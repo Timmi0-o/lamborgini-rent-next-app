@@ -39,7 +39,7 @@ export const RentCars = () => {
 							return value
 						}
 					}
-					return 'top-=70%'
+					return 'top-=50%'
 				},
 				end: () => {
 					const { innerWidth: w, innerHeight: h } = window
