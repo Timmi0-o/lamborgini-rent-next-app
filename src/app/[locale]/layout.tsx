@@ -1,6 +1,8 @@
 import { Provider } from '@/components/layouts/Provider'
 import { stolzl } from '@/components/utils/font'
 import type { Metadata } from 'next'
+import { NextIntlClientProvider } from 'next-intl'
+import { getLocale, getMessages } from 'next-intl/server'
 import './globals.scss'
 
 export const metadata: Metadata = {
@@ -10,15 +12,20 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic'
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	const locale = await getLocale()
+
+	const messages = await getMessages()
 	return (
-		<html lang='en'>
+		<html lang={locale}>
 			<body className={stolzl.className}>
-				<Provider>{children}</Provider>
+				<NextIntlClientProvider messages={messages}>
+					<Provider>{children}</Provider>
+				</NextIntlClientProvider>
 			</body>
 		</html>
 	)

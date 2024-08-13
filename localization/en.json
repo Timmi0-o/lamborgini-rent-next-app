@@ -1,0 +1,6 @@
+{
+	"Header": {
+		"navLinks": ["Car List", "Yacht list", "Chauffeur"],
+		"city": ["Dubai", "Moscow", "Budapest", "Wiesbaden"]
+	}
+}

@@ -3,17 +3,30 @@ import { Section } from '@/components/ui/Section'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { Menu } from './Menu'
 
 export const Header = () => {
+	const locale = useLocale()
+	const path = usePathname()
+	const router = useRouter()
 	const [isMenu, setIsMenu] = useState(false)
 
 	const cityText = useRef(null)
 	const nameSite = useRef(null)
 	const headerGradient = useRef(null)
 	const header = useRef(null)
+
+	// LOCALE
+	const headerLocale = useTranslations('Header')
+	const navLinks = headerLocale.raw('navLinks')
+	const cityLinks = headerLocale.raw('city')
+
+	const [isLocaleList, setIsLocaleList] = useState(false)
+	const [isCityList, setIsCityList] = useState(false)
 
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollTrigger)
@@ -153,9 +166,9 @@ export const Header = () => {
 							</div>
 							{/* LEFT LIST   */}
 							<div className='hidden md:flex items-center gap-[2.083vw]'>
-								{leftNavigate.map((nav, i) => (
+								{navLinks.map((nav: string, i: number) => (
 									<span
-										className='md:text-[1.5vw] xl:text-[0.781vw] text-[#FEFEFE]'
+										className='md:text-[1.5vw] xl:text-[0.781vw] text-[#FEFEFE] cursor-pointer'
 										key={i}
 									>
 										{nav}
@@ -173,27 +186,92 @@ export const Header = () => {
 							</div>
 						</div>
 						{/* RIGHT NAVIGATE  */}
-						<div>
+						<div className='flex gap-[3.125vw]'>
 							<div className='hidden md:flex items-center gap-[3.125vw]'>
-								{rightNavigate.map((nav, i) => (
-									<span
-										className='md:text-[1.5vw] xl:text-[0.781vw] text-[#FEFEFE]'
-										key={i}
+								{/* PHONE  */}
+								<span className='md:text-[1.5vw] xl:text-[0.833vw] text-[#FEFEFE]'>
+									+971 58 590 7875
+								</span>
+								{/* CITY  */}
+								<div className='relative'>
+									<div
+										onClick={() => setIsCityList(!isCityList)}
+										className='flex items-center gap-[2.667vw] md:gap-[0.977vw] xl:gap-[0.521vw]'
 									>
-										{nav}
-									</span>
-								))}
+										<span className='text-[3.714vw] md:text-[1.5vw] xl:text-[0.833vw] text-[#FEFEFE] cursor-pointer'>
+											Dubai
+										</span>
+										<div
+											className={`relative size-[2.667vw] md:size-[0.977vw] xl:size-[0.521vw] duration-200 ease-in-out ${
+												isCityList ? 'rotate-180' : ''
+											}`}
+										>
+											<Image src={'/arrow-list.svg'} fill alt='arrow-list' />
+										</div>
+									</div>
+									{/* VARIABLE CITY  */}
+									<div
+										className={`absolute right-0 flex flex-col gap-[0.5vw] mt-[0.4vw] duration-500 ease-in-out border-[0.052vw] border-[#ffffff23] w-[14.688vw] xl:w-[9.792vw] h-[15.859vw] xl:h-[10.573vw] pt-[1.953vw] xl:pt-[1.302vw] pl-[1.953vw] xl:pl-[1.302vw] rounded-[1.094vw] xl:rounded-[0.729vw] bg-[#313131] ${
+											isCityList ? '' : ' invisible mt-[-1vw] opacity-0'
+										}`}
+									>
+										{cityLinks.map((lang: string, i: number) => (
+											<p
+												onClick={() =>
+													router.push(path.replace(path.split('/')[1], lang))
+												}
+												className='text-[3.714vw] md:text-[1.5vw] xl:text-[0.781vw] text-[#FEFEFE] cursor-pointer uppercase hover:text-[#33B7BC] p-[0.5vw] xl:p-[0.2vw] rounded-[0.5vw] xl:rounded-[0.2vw] duration-150 ease-linear'
+												key={i}
+											>
+												{lang}
+											</p>
+										))}
+									</div>
+								</div>
 							</div>
-							<span className='block md:hidden text-[3.714vw] text-[#FEFEFE]'>
-								ENG
-							</span>
+							{/* LANGUAGE  */}
+							<div className='relative'>
+								<div
+									onClick={() => setIsLocaleList(!isLocaleList)}
+									className='flex items-center gap-[2.667vw] md:gap-[0.977vw] xl:gap-[0.521vw]'
+								>
+									<span className='text-[3.714vw] md:text-[1.5vw] xl:text-[0.833vw] text-[#FEFEFE] cursor-pointer'>
+										{locale.toUpperCase()}
+									</span>
+									<div
+										className={`relative size-[2.667vw] md:size-[0.977vw] xl:size-[0.521vw] duration-200 ease-in-out ${
+											isLocaleList ? 'rotate-180' : ''
+										}`}
+									>
+										<Image src={'/arrow-list.svg'} fill alt='arrow-list' />
+									</div>
+								</div>
+								{/* VARIABLE LANGUAGE  */}
+								<div
+									className={`absolute flex flex-col gap-[0.5vw] mt-[0.4vw] duration-200 ease-in-out border-[0.052vw] border-white p-[2vw] xl:p-[0.5vw] rounded-[1vw] xl:rounded-[0.2vw] ${
+										isLocaleList ? '' : ' invisible mt-[-0.4vw] opacity-0'
+									}`}
+								>
+									{locals.map((lang, i) => (
+										<p
+											onClick={() =>
+												router.push(path.replace(path.split('/')[1], lang))
+											}
+											className='text-[3.714vw] md:text-[1.5vw] xl:text-[0.781vw] text-[#FEFEFE] cursor-pointer uppercase hover:bg-[#ffffff5c] p-[0.5vw] xl:p-[0.2vw] rounded-[0.5vw] xl:rounded-[0.2vw] duration-150 ease-linear'
+											key={i}
+										>
+											{lang}
+										</p>
+									))}
+								</div>
+							</div>
 						</div>
 					</div>
 					{/* TITLE  */}
 					<div className='flex flex-col items-center w-full mt-[60vw] sm:mt-[25vw] md:mt-[15vw] xl:mt-[12vw]'>
 						<h1
 							ref={cityText}
-							className='text-[17.143vw] md:text-[10vw] xl:text-[6.25vw] font-medium leading-[15.714vw] md:leading-[10vw] xl:leading-[5.688vw] mb-[2%]'
+							className='text-[17.143vw] md:text-[10vw] xl:text-[6.25vw] font-medium leading-[15.714vw] md:leading-[10vw] xl:leading-[5.688vw] xl:mb-[0.5%]'
 						>
 							Dubai
 						</h1>
@@ -231,5 +309,4 @@ export const Header = () => {
 	)
 }
 
-const leftNavigate = ['Car List', 'Yacht list', 'Chauffeur']
-const rightNavigate = ['+971 58 590 7875', 'Dubai', 'ENG']
+const locals = ['en', 'ru']
