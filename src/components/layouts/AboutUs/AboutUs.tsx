@@ -3,6 +3,7 @@ import useShuffle from '@/components/hooks/useShuffle'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
+import { useTranslations } from 'next-intl'
 import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import { useRef } from 'react'
@@ -18,6 +19,15 @@ export const AboutUs = () => {
 	const aboutMan = useRef(null)
 
 	const textShuffle = useShuffle()
+
+	// LOCALE
+	const aboutUsLocale = useTranslations('Index.AboutUs')
+	const title = aboutUsLocale.raw('title')
+	const subtitles = aboutUsLocale.raw('subtitles')
+	const descriptions = aboutUsLocale.raw('description')
+	const quoteAuthor = aboutUsLocale('quote')
+	const author = aboutUsLocale('author')
+	const post = aboutUsLocale('post')
 
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollTrigger)
@@ -138,7 +148,7 @@ export const AboutUs = () => {
 				ref={sectionTitle}
 				className='text-[11.111vw] xl:text-[8.333vw] text-center'
 			>
-				About Us
+				{title}
 			</h1>
 			{/* PROFITS  */}
 			<div className='flex flex-wrap items-center justify-center gap-[11.111vw] md:gap-[7vw] xl:gap-[5.938vw] mt-[7.604vw]'>
@@ -156,12 +166,12 @@ export const AboutUs = () => {
 								{profit.title}
 							</h2>
 							<p className='text-[5.556vw] md:text-[3.5vw] xl:text-[1.25vw]'>
-								{profit.subTitle}
+								{subtitles[i]}
 							</p>
 						</div>
 						{/* DESCRIPTION  */}
 						<p className='profit__description text-[4.167vw] md:text-[3.5vw] xl:text-[0.938vw] text-[#DBDBDB] mt-[6.944vw] xl:mt-[1.615vw] w-[88.889vw] xl:w-[20.625vw]'>
-							{profit.description}
+							{descriptions[i]}
 						</p>
 					</div>
 				))}
@@ -179,15 +189,12 @@ export const AboutUs = () => {
 						inter.className
 					}
 				>
-					I’m with cars for over 18 years. My auto passion and attention to
-					details will make your experience with us second to none. Guaranteed.
+					{quoteAuthor}
 				</p>
 				<div className='flex flex-col items-end w-[68.177vw] mt-[8.333vw] md:mt-[4vw] xl:mt-[1.563vw]'>
-					<p className='text-[5vw] md:text-[3vw] xl:text-[1.25vw]'>
-						Kirill Aliev, MBA
-					</p>
+					<p className='text-[5vw] md:text-[3vw] xl:text-[1.25vw]'>{author}</p>
 					<p className='text-[3.889vw] md:text-[2vw] xl:text-[0.833vw] text-[#969696]'>
-						CEO Trinity car rental boutique
+						{post}
 					</p>
 				</div>
 
@@ -209,20 +216,11 @@ export const AboutUs = () => {
 const profits = [
 	{
 		title: '8',
-		subTitle: 'year',
-		description:
-			"We've come a long way from a 2-people company to winning at Webby's.",
 	},
 	{
 		title: '72',
-		subTitle: 'cars',
-		description:
-			"We've come a long way from a 2-people company to winning at Webby's.",
 	},
 	{
 		title: '190',
-		subTitle: 'people',
-		description:
-			"We've come a long way from a 2-people company to winning at Webby's.",
 	},
 ]

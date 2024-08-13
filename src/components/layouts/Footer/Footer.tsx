@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Marquee from 'react-fast-marquee'
 import { ButtonSecond } from '../../ui/ButtonSecond/ButtonSecond'
@@ -5,6 +6,7 @@ import { Input } from '../../ui/Input'
 import style from './Footer.module.scss'
 
 export const Footer = () => {
+	const footerLocale = useTranslations('Footer')
 	return (
 		<div className=' w-full'>
 			<div className='border-y-[0.052vw] border-y-[#272727] px-[3.125vw]'>
@@ -12,7 +14,7 @@ export const Footer = () => {
 				<div className='flex flex-col xl:flex-row justify-center gap-[11.111vw] xl:gap-[4.167vw] xl:pr-[10.417vw]'>
 					{/* NAW LINKS  */}
 					<div className='grid grid-cols-2 md:grid-cols-3 gap-[13.889vw] xl:gap-[11.458vw] xl:pr-[10.99vw] xl:border-r-[0.052vw] border-r-[#272727] pt-[3.125vw] w-[88.889vw] xl:w-[47.083vw]'>
-						{Object.keys(footerLinks).map((key) => (
+						{Object.keys(footerLocale.raw('footerLinks')).map((key) => (
 							<div
 								className='w-[43.889vw] md:w-[30vw] xl:w-[8.333vw]'
 								key={key}
@@ -21,14 +23,16 @@ export const Footer = () => {
 									{key.split('_').join(' ')}
 								</h2>
 								<div className='flex flex-col gap-[7.778vw] md:gap-[3vw] xl:gap-[1.042vw] mt-[7.778vw] md:mt-[3vw] xl:mt-[1.042vw]'>
-									{footerLinks[key].map((link, i) => (
-										<p
-											className='text-[#e2e2e2b5] cursor-pointer xl:hover:text-white text-[4vw] md:text-[2vw] xl:text-[0.938vw]'
-											key={i}
-										>
-											{link}
-										</p>
-									))}
+									{footerLocale
+										.raw('footerLinks')
+										[key].map((link: string, i: number) => (
+											<p
+												className='text-[#e2e2e2b5] cursor-pointer xl:hover:text-white text-[4vw] md:text-[2vw] xl:text-[0.938vw]'
+												key={i}
+											>
+												{link}
+											</p>
+										))}
 								</div>
 							</div>
 						))}
@@ -53,15 +57,18 @@ export const Footer = () => {
 								</div>
 							</div>
 						</div>
-						<div className='flex flex-col md:w-[40vw] w-[88.889vw] xl:w-[15.313vw] md:mt-[5vw] mt-[1.042vw] xl:mt-[1vw]'>
-							<ButtonSecond>REQUEST A CALLBACK</ButtonSecond>
+
+						<div className='flex flex-col md:mt-[5vw] mt-[1.042vw] xl:mt-[1vw]'>
+							<div className='md:w-[40vw] w-[88.889vw] xl:w-[15.313vw]'>
+								<ButtonSecond>{footerLocale('button')}</ButtonSecond>
+							</div>
 							<p className='text-center xl:text-left text-[5.556vw] md:text-[2vw] xl:text-[1.25vw] mt-[2.604vw]'>
-								24 4th St - Al Quoz - Al Quoz <br /> Industrial Area 3 - Dubai
+								{footerLocale('street')}
 							</p>
 							<div className='hidden xl:block mt-[3.646vw] w-[29.688vw]'>
 								<Input
-									placeholder='Write your E-mail'
-									btnTitle='Submit'
+									placeholder={footerLocale('inputEmail')}
+									btnTitle={footerLocale('inputButton')}
 									// buttonFn={() => void}
 								/>
 							</div>
@@ -69,7 +76,8 @@ export const Footer = () => {
 					</div>
 				</div>
 			</div>
-			<div className='hidden md:block w-full py-[1.823vw] border-b-[0.052vw] border-b-[#272727]'>
+			{/* PAYMENT METHODS RUN LIST  */}
+			<div className='hidden lg:block w-full py-[1.823vw] border-b-[0.052vw] border-b-[#272727]'>
 				<Marquee direction='right' speed={40}>
 					{[
 						...payImg,
@@ -92,9 +100,9 @@ export const Footer = () => {
 			</div>
 			{/* All rights reserved  */}
 			<div className='flex flex-col-reverse md:flex-row justify-between items-center py-[7.5vw] md:py-[3vw] xl:py-[1.302vw] px-[3.125vw] '>
-				<p className='text-[#33B7BC]'>Privacy Policy</p>
+				<p className='text-[#33B7BC]'>{footerLocale('privacy')}</p>
 				<p className='text-[#525252] mb-[3.056vw] md:mb-0'>
-					©2023 TRINITY. All rights reserved
+					{footerLocale('rights')}
 				</p>
 				<div className='flex mb-[7.778vw] md:mb-0 gap-[8.333vw] md:gap-[4vw] xl:gap-[1.563vw]'>
 					{Array.from({ length: 4 }).map((_, i) => (
@@ -107,18 +115,6 @@ export const Footer = () => {
 			</div>
 		</div>
 	)
-}
-
-const footerLinks: { [key: string]: string[] } = {
-	For_Customers: [
-		'About Us',
-		'Conditions',
-		'Testimonials',
-		'Articles',
-		'Contacts',
-	],
-	Car_List: ['SUVs', 'Convertibles', 'Sports Cars', 'Premium', 'Coupe'],
-	Service: ['Car List', 'Yacht list', 'Chauffeur'],
 }
 
 const payImg = [

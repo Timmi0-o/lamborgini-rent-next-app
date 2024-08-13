@@ -2,6 +2,7 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useRef } from 'react'
 import style from './Advantage.module.scss'
@@ -9,6 +10,11 @@ import style from './Advantage.module.scss'
 export const Advantages = () => {
 	const sectionTitle = useRef(null)
 	const advantageWrapper = useRef(null)
+
+	// LOCALE
+	const AdvantageLocale = useTranslations('Index.Advantages')
+	const titleAdvantage = AdvantageLocale('title')
+	const advantages = AdvantageLocale.raw('carTitleList')
 
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollTrigger)
@@ -81,11 +87,11 @@ export const Advantages = () => {
 				ref={sectionTitle}
 				className='text-[11.111vw] xl:text-[8.333vw] text-center mb-[6.302vw]'
 			>
-				Advantages
+				{titleAdvantage}
 			</h1>
 			{/* ADVANTAGES PC */}
 			<div className='hidden md:flex flex-wrap'>
-				{advantagesDescription.map((title, i) => (
+				{advantages.map((title: string, i: number) => (
 					<div
 						className='advantage__items relative w-[49.5vw] xl:w-[33.073vw] h-[35vw] xl:h-[23.958vw] border-[0.052vw] border-[#272727]'
 						key={i}
@@ -112,7 +118,7 @@ export const Advantages = () => {
 						style.mobile_container_wrapper
 					}
 				></div>
-				{advantagesDescription.slice(0, 4).map((title, i) => (
+				{advantages.slice(0, 4).map((title: string, i: number) => (
 					<div
 						className='flex gap-[2vw] items-center mb-[6.722vw] ml-[9.722vw]'
 						key={i}
@@ -127,12 +133,3 @@ export const Advantages = () => {
 		</div>
 	)
 }
-
-const advantagesDescription = [
-	'40+ unique cars for\n rent from our fleet',
-	'Delivery and return\n of cars in Dubai 24/7',
-	'Insurance without a\n deductible for each car',
-	'No video or audio\n recording in the car',
-	'24/7 technical support',
-	'All models have a premium package',
-]

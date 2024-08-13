@@ -1,4 +1,5 @@
 'use client'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useState } from 'react'
 import Marquee from 'react-fast-marquee'
@@ -8,6 +9,10 @@ import style from './Discount.module.scss'
 
 export const Discount = () => {
 	const [carVariableSelected, setCarVariableSelected] = useState(0)
+
+	// LOCALE
+	const discountLocale = useTranslations('Index.Discount')
+
 	return (
 		<div className='relative w-full justify-center'>
 			{/* GLOWS  */}
@@ -32,7 +37,9 @@ export const Discount = () => {
 					<div className='relative z-20 flex flex-col items-center'>
 						{/* TITLE PC  */}
 						<h2 className='hidden md:block md:text-[4vw] xl:text-[2.396vw]'>
-							Get a discount of up to <span className='font-bold'>60%</span>
+							{discountLocale.rich('title', {
+								b: (text) => <b>{text}</b>,
+							})}
 						</h2>
 						{/* TITLE MOBILE  */}
 						<h2 className='block md:hidden text-[6.667vw]'>
@@ -40,15 +47,14 @@ export const Discount = () => {
 							<span className='font-bold'>60%</span>
 						</h2>
 						<p className='text-[3.889vw] md:text-[2.5vw] xl:text-[0.938vw] text-center text-[#868686] mt-[8.333vw] md:mt-[4vw] xl:mt-[1.302vw] w-[77.222vw] xl:w-[33.385vw]'>
-							Get the latest articles and business updates that you need to
-							know, you’ll even get special recommendations weekly.
+							{discountLocale('description')}
 						</p>
 					</div>
 					<div className='flex flex-col md:flex-row items-center gap-[1.042vw] md:gap-[2vw] mt-[3.333vw] z-30'>
 						<div className='w-[77.778vw] md:w-[50vw] xl:w-[22.135vw]'>
 							<Input
 								opacity='0.7'
-								placeholder='Your email'
+								placeholder={discountLocale('inputEmail')}
 								img
 								imgStart
 								heightCustom='h-[16.667vw] md:h-[10vw] xl:h-[3.542vw]'
@@ -56,7 +62,7 @@ export const Discount = () => {
 							/>
 						</div>
 						<div className='w-[77.778vw] md:w-[30vw] xl:w-[9.375vw] mt-[4.167vw] md:mt-0'>
-							<Button>Receive</Button>
+							<Button>{discountLocale('button')}</Button>
 						</div>
 					</div>
 				</div>

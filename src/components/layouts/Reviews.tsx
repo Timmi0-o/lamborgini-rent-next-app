@@ -2,6 +2,7 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { Mousewheel } from 'swiper/modules'
@@ -12,6 +13,9 @@ export const Reviews = () => {
 
 	const sectionTitle = useRef(null)
 	const reviewWrapper = useRef(null)
+
+	// LOCALE
+	const reviewLocale = useTranslations('Index.Reviews')
 
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollTrigger)
@@ -95,7 +99,7 @@ export const Reviews = () => {
 				ref={sectionTitle}
 				className='text-[11.111vw] xl:text-[8.333vw] font-medium text-center mb-[6.25vw]'
 			>
-				Reviews
+				{reviewLocale('title')}
 			</h1>
 			{/* REVIEWS  PC*/}
 			<div className='hidden xl:flex gap-[0.313vw] justify-center'>

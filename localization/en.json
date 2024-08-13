@@ -1,6 +1,106 @@
 {
 	"Header": {
-		"navLinks": ["Car List", "Yacht list", "Chauffeur"],
-		"city": ["Dubai", "Moscow", "Budapest", "Wiesbaden"]
+		"navLinks": [
+			"Car List",
+			"Yacht list",
+			"Chauffeur"
+		],
+		"city": [
+			"Dubai",
+			"Moscow",
+			"Budapest",
+			"Wiesbaden"
+		],
+		"siteName": "luxury car rental"
+	},
+	"Index": {
+		"MostPopular": {
+			"title": "Most Popular",
+			"inputSearch": "Car search",
+			"button": "View all"
+		},
+		"RentCars": {
+			"groupLink": [
+				"Special Offer",
+				"New car",
+				"Most popular",
+				"Daily"
+			],
+			"buttonRent": "Rent",
+			"buttonViewAll": "View all"
+		},
+		"AboutUs": {
+			"title": "About Us",
+			"subtitles": [
+				"year",
+				"cars",
+				"people"
+			],
+			"description": [
+				"We've come a long way from a 2-people company to winning at Webby's.",
+				"We've come a long way from a 2-people company to winning at Webby's.",
+				"We've come a long way from a 2-people company to winning at Webby's."
+			],
+			"quote": "I’m with cars for over 18 years. My auto passion and attention to details will make your experience with us second to none. Guaranteed.",
+			"author": "Kirill Aliev, MBA",
+			"post": "CEO Trinity car rental boutique"
+		},
+		"Reviews": {
+			"title": "Reviews"
+		},
+		"Advantages": {
+			"title": "Advantages",
+			"carTitleList": [
+				"40+ unique cars for\n rent from our fleet",
+				"Delivery and return\n of cars in Dubai 24/7",
+				"Insurance without a\n deductible for each car",
+				"No video or audio\n recording in the car",
+				"24/7 technical support",
+				"All models have a premium package"
+			]
+		},
+		"AskUs": {
+			"title": "Ask us anything",
+			"inputName": "Name",
+			"inputEmail": "E-mail",
+			"inputPhone": "+7 (999) 999 99 - 99",
+			"inputMessage": "Message",
+			"button": "Send the request"
+		},
+		"Discount": {
+			"title": "Get a discount of up to <b>60%</b>",
+			"description": "Get the latest articles and business updates that you need to know, you’ll even get special recommendations weekly.",
+			"inputEmail": "Your email",
+			"button": "Receive"
+		}
+	},
+	"Footer": {
+		"footerLinks": {
+			"For_Customers": [
+				"About Us",
+				"Conditions",
+				"Testimonials",
+				"Articles",
+				"Contacts"
+			],
+			"Car_List": [
+				"SUVs",
+				"Convertibles",
+				"Sports Cars",
+				"Premium",
+				"Coupe"
+			],
+			"Service": [
+				"Car List",
+				"Yacht list",
+				"Chauffeur"
+			]
+		},
+		"button": "REQUEST A CALLBACK",
+		"street": "24 4th St - Al Quoz - Al Quoz\n Industrial Area 3 - Dubai",
+		"inputEmail": "Write your E-mail",
+		"inputButton": "Submit",
+		"privacy": "Privacy Policy",
+		"rights": "©2023 TRINITY. All rights reserved"
 	}
 }

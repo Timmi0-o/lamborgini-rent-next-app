@@ -2,6 +2,7 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { Button } from '../ui/Button/Button'
@@ -13,6 +14,12 @@ export const MostPopular = () => {
 	const popularWrapper = useRef(null)
 	const carPreview = useRef(null)
 	const sectionName = useRef(null)
+
+	// LOCALE
+	const MostPopularLocale = useTranslations('Index.MostPopular')
+	const title = MostPopularLocale('title')
+	const inputSearch = MostPopularLocale('inputSearch')
+	const buttonViewAll = MostPopularLocale('button')
 
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollTrigger)
@@ -87,11 +94,11 @@ export const MostPopular = () => {
 			<div className='flex flex-col gap-[2.604vw] ml-[3.125vw]'>
 				{/* TITLE  */}
 				<h2 ref={sectionName} className='text-[3.646vw] leading-[2.604vw]'>
-					Most Popular
+					{title}
 				</h2>
 				{/* INPUT  */}
 				<div className='w-[36.458vw]'>
-					<Input placeholder='Car search' img />
+					<Input placeholder={inputSearch} img />
 				</div>
 				{/* SELECT CAR  */}
 				<div className='flex gap-[3.646vw]'>
@@ -158,7 +165,7 @@ export const MostPopular = () => {
 						</div>
 						{/* VIEW ALL BUTTON  */}
 						<div className='w-[11.198vw]'>
-							<Button>View all</Button>
+							<Button>{buttonViewAll}</Button>
 						</div>
 					</div>
 				</div>

@@ -4,6 +4,7 @@ import { ButtonSecond } from '@/components/ui/ButtonSecond/ButtonSecond'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import 'swiper/css'
@@ -15,6 +16,12 @@ export const RentCars = () => {
 	const [carVariableSelected, setCarVariableSelected] = useState(0)
 
 	const rentWrapper = useRef(null)
+
+	// LOCALE
+	const rentLocale = useTranslations('Index.RentCars')
+	const navLinks = rentLocale.raw('groupLink')
+	const buttonRent = rentLocale.raw('buttonRent')
+	const buttonViewAll = rentLocale.raw('buttonViewAll')
 
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollTrigger)
@@ -93,7 +100,7 @@ export const RentCars = () => {
 		<div ref={rentWrapper} className='mt-[8vw] xl:mt-[13.542vw]'>
 			{/* NAV LINKS  PC*/}
 			<div className='hidden xl:flex justify-center gap-[2.604vw] mb-[2.604vw]'>
-				{navLinks.map((nav, i) => (
+				{navLinks.map((nav: string, i: number) => (
 					<div id='navLinks' className='relative' key={i}>
 						<p
 							onClick={() => setCarVariableSelected(i)}
@@ -120,7 +127,7 @@ export const RentCars = () => {
 					mousewheel={{ forceToAxis: true }}
 					freeMode={{ enabled: true, sticky: false }}
 				>
-					{navLinks.map((nav, i) => (
+					{navLinks.map((nav: string, i: number) => (
 						<SwiperSlide className='!w-fit' key={i}>
 							<div className='relative' key={i}>
 								<p
@@ -159,7 +166,7 @@ export const RentCars = () => {
 									{car.title}
 								</h2>
 								<div className='w-[21.944vw] md:w-[15vw] xl:w-[5.625vw]'>
-									<ButtonSecond>Rent</ButtonSecond>
+									<ButtonSecond>{buttonRent}</ButtonSecond>
 								</div>
 							</div>
 						</div>
@@ -171,14 +178,12 @@ export const RentCars = () => {
 						'w-[88.889vw] md:w-[40vw] xl:w-[18.229vw] mt-[8.333vw] xl:mt-[3.125vw]'
 					}
 				>
-					<Button>View all</Button>
+					<Button>{buttonViewAll}</Button>
 				</div>
 			</div>
 		</div>
 	)
 }
-
-const navLinks = ['Special Offer', 'New car', 'Most popular', 'Daily']
 
 const cars = [
 	{ img: '/icons/Lamborghini Urus.png', title: 'Lamborghini Urus' },

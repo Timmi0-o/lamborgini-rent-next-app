@@ -24,9 +24,15 @@ export const Header = () => {
 	const headerLocale = useTranslations('Header')
 	const navLinks = headerLocale.raw('navLinks')
 	const cityLinks = headerLocale.raw('city')
+	const siteName = headerLocale('siteName')
 
 	const [isLocaleList, setIsLocaleList] = useState(false)
 	const [isCityList, setIsCityList] = useState(false)
+
+	// INITIAL CITY
+	const cityId = Number(localStorage.getItem('cityId'))
+	const city = cityLinks[cityId]
+	const [currentCity, setCurrentCity] = useState(city || cityLinks[0])
 
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollTrigger)
@@ -78,7 +84,14 @@ export const Header = () => {
 					// markers: true,
 				},
 				ease: 'expo.inOut',
-				scale: 2,
+				scale: () => {
+					const screenWidth = window.innerWidth
+					if (screenWidth >= 750) {
+						return 2
+					} else {
+						return 1.1
+					}
+				},
 				y: () => {
 					const { innerWidth: w, innerHeight: h } = window
 					const conditions = [
@@ -199,7 +212,7 @@ export const Header = () => {
 										className='flex items-center gap-[2.667vw] md:gap-[0.977vw] xl:gap-[0.521vw]'
 									>
 										<span className='text-[3.714vw] md:text-[1.5vw] xl:text-[0.833vw] text-[#FEFEFE] cursor-pointer'>
-											Dubai
+											{currentCity}
 										</span>
 										<div
 											className={`relative size-[2.667vw] md:size-[0.977vw] xl:size-[0.521vw] duration-200 ease-in-out ${
@@ -215,15 +228,17 @@ export const Header = () => {
 											isCityList ? '' : ' invisible mt-[-1vw] opacity-0'
 										}`}
 									>
-										{cityLinks.map((lang: string, i: number) => (
+										{cityLinks.map((city: string, i: number) => (
 											<p
-												onClick={() =>
-													router.push(path.replace(path.split('/')[1], lang))
-												}
+												onClick={() => {
+													localStorage.setItem('cityId', `${i}`)
+													setCurrentCity(city)
+													setIsCityList(false)
+												}}
 												className='text-[3.714vw] md:text-[1.5vw] xl:text-[0.781vw] text-[#FEFEFE] cursor-pointer uppercase hover:text-[#33B7BC] p-[0.5vw] xl:p-[0.2vw] rounded-[0.5vw] xl:rounded-[0.2vw] duration-150 ease-linear'
 												key={i}
 											>
-												{lang}
+												{city}
 											</p>
 										))}
 									</div>
@@ -255,7 +270,7 @@ export const Header = () => {
 									{locals.map((lang, i) => (
 										<p
 											onClick={() =>
-												router.push(path.replace(path.split('/')[1], lang))
+												router.replace(path.replace(path.split('/')[1], lang))
 											}
 											className='text-[3.714vw] md:text-[1.5vw] xl:text-[0.781vw] text-[#FEFEFE] cursor-pointer uppercase hover:bg-[#ffffff5c] p-[0.5vw] xl:p-[0.2vw] rounded-[0.5vw] xl:rounded-[0.2vw] duration-150 ease-linear'
 											key={i}
@@ -271,18 +286,18 @@ export const Header = () => {
 					<div className='flex flex-col items-center w-full mt-[60vw] sm:mt-[25vw] md:mt-[15vw] xl:mt-[12vw]'>
 						<h1
 							ref={cityText}
-							className='text-[17.143vw] md:text-[10vw] xl:text-[6.25vw] font-medium leading-[15.714vw] md:leading-[10vw] xl:leading-[5.688vw] xl:mb-[0.5%]'
+							className='text-[17.143vw] md:text-[10vw] xl:text-[6.25vw] font-medium'
 						>
-							Dubai
+							{currentCity}
 						</h1>
 						<p
 							ref={nameSite}
 							className='text-[4.857vw] md:text-[2.5vw] xl:text-[1.667vw] font-normal opacity-100'
 						>
-							luxury car rental
+							{siteName}
 						</p>
 					</div>
-					{/* LINE  */}
+					{/* BOTTOM LINE  */}
 					<div className='flex flex-col justify-center absolute bottom-0 left-[50%] translate-x-[-50%] w-[0.104vw]'>
 						<div className='w-full h-[5.714vw] xl:h-[1.042vw] bg-[#33B7BC]'></div>
 						<div className='w-full h-[11.429vw] xl:h-[2.083vw] bg-[#ffffff42]'></div>
