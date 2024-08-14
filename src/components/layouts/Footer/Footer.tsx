@@ -8,7 +8,7 @@ import style from './Footer.module.scss'
 export const Footer = () => {
 	const footerLocale = useTranslations('Footer')
 	return (
-		<div className=' w-full'>
+		<div className='w-full'>
 			<div className='border-y-[0.052vw] border-y-[#272727] px-[3.125vw]'>
 				{/* NAW LINKS & REQUEST A CALLBACK  */}
 				<div className='flex flex-col xl:flex-row justify-center gap-[11.111vw] xl:gap-[4.167vw] xl:pr-[10.417vw]'>
@@ -59,7 +59,7 @@ export const Footer = () => {
 						</div>
 
 						<div className='flex flex-col md:mt-[5vw] mt-[1.042vw] xl:mt-[1vw]'>
-							<div className='md:w-[40vw] w-[88.889vw] xl:w-[15.313vw]'>
+							<div className='my-[5vw] md:my-0 md:w-[40vw] w-[88.889vw] xl:w-[15.313vw]'>
 								<ButtonSecond>{footerLocale('button')}</ButtonSecond>
 							</div>
 							<p className='text-center xl:text-left text-[5.556vw] md:text-[2vw] xl:text-[1.25vw] mt-[2.604vw]'>

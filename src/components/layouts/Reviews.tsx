@@ -137,7 +137,7 @@ export const Reviews = () => {
 					<Swiper
 						onSlideChange={(swiper) => setReviewHover(swiper.activeIndex)}
 						onActiveIndexChange={(swiper) => setReviewHover(swiper.activeIndex)}
-						slidesPerView={1.7}
+						slidesPerView='auto'
 						spaceBetween={4}
 						modules={[Mousewheel]}
 						mousewheel={{ forceToAxis: true }}

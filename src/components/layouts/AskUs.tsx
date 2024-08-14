@@ -14,11 +14,11 @@ export const AskUs = () => {
 	const button = askUsLocale('button')
 
 	return (
-		<div className='flex flex-row md:flex-col xl:flex-row justify-center gap-[3.125vw] mt-[13.542vw] md:items-center lg:item-baseline'>
+		<div className='flex flex-col items-center xl:flex-row justify-center gap-[3.125vw] mt-[13.542vw] md:items-center lg:item-baseline'>
 			<div className='hidden md:block z-30 relative w-[90vw] xl:w-[57.292vw] h-[60vw] xl:h-[44.792vw]'>
 				<Image src={'/icons/map.png'} fill alt='map' />
 			</div>
-			<div className='xl:mr-[3.125vw]'>
+			<div className='flex flex-col items-center xl:mr-[3.125vw]'>
 				{/* PC TITLE  */}
 				<h2 className='hidden md:block text-[11.111vw] md:text-[6vw] xl:text-[3.646vw] text-center font-bold md:mb-[5vw] lg:mb-0'>
 					{title}

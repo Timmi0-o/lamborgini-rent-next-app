@@ -42,9 +42,10 @@ export const Discount = () => {
 							})}
 						</h2>
 						{/* TITLE MOBILE  */}
-						<h2 className='block md:hidden text-[6.667vw]'>
-							Get a discount <br /> of up to{' '}
-							<span className='font-bold'>60%</span>
+						<h2 className='block md:hidden text-center text-[6.667vw]'>
+							{discountLocale.rich('title', {
+								b: (text) => <b>{text}</b>,
+							})}
 						</h2>
 						<p className='text-[3.889vw] md:text-[2.5vw] xl:text-[0.938vw] text-center text-[#868686] mt-[8.333vw] md:mt-[4vw] xl:mt-[1.302vw] w-[77.222vw] xl:w-[33.385vw]'>
 							{discountLocale('description')}
@@ -71,7 +72,7 @@ export const Discount = () => {
 					<Image src={'/plus-squad.svg'} fill alt='plus' />
 				</div>
 			</div>
-			<div className='w-full my-[22.222vw] md:my-[5vw] xl:my-[5.208vw]'>
+			<div className='w-full my-[12.222vw] md:my-[5vw] xl:my-[5.208vw]'>
 				<Marquee>
 					{[
 						...rainingLineLinks,
